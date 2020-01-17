@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content_1 %}
+    <h2>Список книг выданных друзьям:</h2>
+    {% for friend in friends %}
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark">
+           <h5>{{ friend.friend_name }}</h5>            
+           <ul class="list-group">
+                {% for book in friend.books.all %}
+                    <li class="list-group-item list-group-item-dark"> Книга: {{ book.title }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+    {% endfor %}
+{% endblock %}

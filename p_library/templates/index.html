@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content_1 %}
+Добро пожаловать в {{ title }}. <br>
+Тут собрано {{ books|length }} книг из моей личной колекции.
+
+<table border="1">
+	{% for book in books %}
+	<tr>
+		<td>{{ forloop.counter }}</td>
+		<td>{{ book.title }}</td>
+		<td>
+			{% if book.cover %}
+			<img src="{{ book.cover.url }}" width="50" height="50" alt="">
+			{% endif %}
+		</td>
+		<td>{{ book.description }}</td>
+		<td>{{ book.year_release }}</td>
+		<td>{{ book.author.full_name }}</td>
+		<td>{{ book.author.country }}</td>
+		<td>{{ book.copy_count }}</td>
+		<td style="text-align: center; vertical-align: middle;">
+			<form action="/index/book_increment/" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<input type="hidden" name="id" value="{{book.id}}" />
+				<input class="btn btn-outline-light" type="submit" value="&and;" />
+			</form>
+			<form action="/index/book_decrement/" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<input type="hidden" name="id" value="{{book.id}}" />
+				<input class="btn btn-outline-light" type="submit" value="&or;" />
+			</form>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}

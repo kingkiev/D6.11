@@ -1,0 +1,29 @@
+body {
+  background: url('/static/images/bg-image.jpg') no-repeat center center fixed;  
+  background-size: cover;
+  color: white;
+}
+
+.container-fluid {
+  color: white;
+}
+
+.dark-bg {
+  color: white;
+  background-color: black;
+  opacity: 0.75;
+}
+
+.space {
+  height: 3vh;
+}
+
+th,
+td {
+  color: white;
+}
+
+.wrapper {
+  text-align: center;
+  padding: 5vw;
+}
